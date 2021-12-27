@@ -15757,13 +15757,14 @@ There are 62 movies with a value of 0 for vote_count
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[266]:</div>
+<div class="prompt input_prompt">In&nbsp;[286]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">uniqueLanguage</span> <span class="o">=</span> <span class="n">get_unique_strings</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;original_language&quot;</span><span class="p">)</span>
 <span class="n">uniqueLanguage</span> <span class="o">=</span> <span class="n">sort_unique_strings</span><span class="p">(</span><span class="n">uniqueLanguage</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plot_unique_strings</span><span class="p">(</span><span class="n">uniqueLanguage</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">uniqueLanguage</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">uniqueLanguage</span><span class="p">]))</span>
 </pre></div>
 
     </div>
@@ -15796,6 +15797,7 @@ There are 62 movies with a value of 0 for vote_count
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[(&#39;en&#39;, 4505), (&#39;fr&#39;, 70), (&#39;es&#39;, 32), (&#39;zh&#39;, 27), (&#39;de&#39;, 27), (&#39;hi&#39;, 19), (&#39;ja&#39;, 16), (&#39;it&#39;, 14), (&#39;cn&#39;, 12), (&#39;ru&#39;, 11), (&#39;ko&#39;, 11), (&#39;pt&#39;, 9), (&#39;da&#39;, 7), (&#39;sv&#39;, 5), (&#39;nl&#39;, 4), (&#39;fa&#39;, 4), (&#39;th&#39;, 3), (&#39;he&#39;, 3), (&#39;ta&#39;, 2), (&#39;cs&#39;, 2), (&#39;ar&#39;, 2), (&#39;id&#39;, 2), (&#39;ro&#39;, 2), (&#39;te&#39;, 1), (&#39;xx&#39;, 1), (&#39;hu&#39;, 1), (&#39;is&#39;, 1), (&#39;tr&#39;, 1), (&#39;nb&#39;, 1), (&#39;af&#39;, 1), (&#39;pl&#39;, 1), (&#39;vi&#39;, 1), (&#39;ky&#39;, 1), (&#39;no&#39;, 1), (&#39;sl&#39;, 1), (&#39;ps&#39;, 1), (&#39;el&#39;, 1)]
+4803
 </pre>
 </div>
 </div>
@@ -17078,6 +17080,177 @@ Column tagline has 0 empty string values
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Useful-vs-Not-useful-columns-for-predicting-genre">Useful vs Not useful columns for predicting genre<a class="anchor-link" href="#Useful-vs-Not-useful-columns-for-predicting-genre">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Useful">Useful<a class="anchor-link" href="#Useful">&#182;</a></h2><ul>
+<li>Keywords</li>
+</ul>
+<blockquote><ol>
+<li>There are 9813 unique keywords.</li>
+<li>412 movies with no keyword.</li>
+<li>Some keywords appear in many movies. The 1st ranked keyword appears in 324 movies, the 20th ranked keyword appears in 89 movies.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Title</li>
+</ul>
+<blockquote><ol>
+<li>Any movies has a title.</li>
+<li>There are only 3 pairs of movies with the same title.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Overview</li>
+</ul>
+<blockquote><ol>
+<li><strong>This might be the most useful feature</strong></li>
+<li>Only 3 movies have no overview.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Production Companies</li>
+</ul>
+<blockquote><ol>
+<li>There are 5017 unique production companies.</li>
+<li>Some companies appear in many movies. The 1st ranked keyword appears in 319 movies, the 20th ranked keyword appears in 56 movies.</li>
+<li>351 movies have no production company stated.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Tagline</li>
+</ul>
+<blockquote><ol>
+<li>844 movies have no tagline.</li>
+<li>They contain less information compared to <strong>Overview</strong> but the information should still be helpful.</li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Maybe-useful">Maybe useful<a class="anchor-link" href="#Maybe-useful">&#182;</a></h2><ul>
+<li>Budget</li>
+</ul>
+<blockquote><ol>
+<li>1037 movies have no budget reported.</li>
+<li>There might be a link between the budget value and movie genre (ex: action movies might be generally more expensive)</li>
+</ol>
+</blockquote>
+<ul>
+<li>Original Language</li>
+</ul>
+<blockquote><ol>
+<li>4505 movies have English as original language.</li>
+<li>All movies have exactly one original language reported.</li>
+<li>It might be useful for predicting the genre for non US made movies. Other countries may be focusing on a particular movie genre.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Popularity</li>
+</ul>
+<blockquote><ol>
+<li>Only 1 movie has 0 popularity.</li>
+<li>Popularity might be linked with movie genre (an educated guess would be that action movies have high popularity).</li>
+</ol>
+</blockquote>
+<ul>
+<li>Production Countries</li>
+</ul>
+<blockquote><ol>
+<li>174 movies have no production country reported.</li>
+<li>US is connected to most movies (3956), however, some other countries are also connected to a decent amount of movies (the one ranked 20th is connected to 19 movies). </li>
+<li>Most movies have a single production country (~3400), some movies have two production countries (~800). Some movies have three production countries (~250). There are even movies with six production countries.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Revenue</li>
+</ul>
+<blockquote><ol>
+<li>1427 movies have no revenue reported.</li>
+<li>Same as budget, there might be a link between movie genre and revenue.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Runtime</li>
+</ul>
+<blockquote><ol>
+<li>35 movies have no runtime reported.</li>
+<li>The runtime distribution is normal (almost) with mean of 100 minutes. </li>
+</ol>
+</blockquote>
+<ul>
+<li>Spoken Languages</li>
+</ul>
+<blockquote><ol>
+<li>87 movies have no spoken language reported.</li>
+<li>There are 86 unique spoken languages.</li>
+<li>Similar to Production Countries</li>
+</ol>
+</blockquote>
+<ul>
+<li>Vote Average</li>
+</ul>
+<blockquote><ol>
+<li>63 movies with no vote average reported.</li>
+<li>Normal distribution (almost) with mean of 6.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Vote Count</li>
+</ul>
+<blockquote><ol>
+<li>62 movies have no vote count reported.</li>
+<li>Exponential distribution, most movies have a low vote cound (75% less than 737 votes).</li>
+</ol>
+</blockquote>
+<ul>
+<li>Cast</li>
+</ul>
+<blockquote><ol>
+<li>43 movies have no cast members reported.</li>
+<li>Some actors appear in multiple movies. The 1st actor appears in 67 movies, while the 20th ranked actor appears in 36 movies.</li>
+<li>There are 54201 unique actors.</li>
+<li>We could use the cast count as a feature. Maybe some movie genres generally use more actors than others.</li>
+</ol>
+</blockquote>
+<ul>
+<li>Crew</li>
+</ul>
+<blockquote><ol>
+<li>28 movies with no crew members reported.</li>
+<li>Similarly to Cast, some crew members appear in multiple movies. 1st in 104 movies, 20th in 53 movies.</li>
+<li>There are 52234 unique crew members.</li>
+<li>There are only 12 unique crew departments. We could use the number of crew members from each department as a feature. Maybe some genres require additional crew members for a specific department.</li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Useless">Useless<a class="anchor-link" href="#Useless">&#182;</a></h2><ul>
+<li>Homepage</li>
+<li>Id</li>
+<li>Status</li>
+<li>Release Date</li>
+</ul>
+
+</div>
+</div>
 </div>
     </div>
   </div>
